@@ -1,0 +1,46 @@
+# Private and Public Key Files
+*.pem
+
+# Encrypted and Decrypted Payloads
+*.enc
+*.decrypted
+
+# Sample/Test Temporary Files
+test_document.txt
+secret.txt
+secret_decrypted.txt
+should_fail.txt
+test_crlf.py
+CHAT_HISTORY_AND_SECURITY_SUMMARY.md
+
+# Demo and Test-Generated Artifacts
+demo_secret.txt
+demo_secret_decrypted.txt
+demo_secret_tampered.enc
+empty.txt
+empty_dec.txt
+large.bin
+large_dec.bin
+normal.txt
+normal_dec.txt
+forward_test.txt
+forward_test_dec.txt
+wrong_recv.txt
+wrong_recv_dec.txt
+nopass_test.txt
+nopass_test_dec.txt
+
+# Application Logs
+*.log
+hybrid_crypto_errors.log
+
+# Python Cache & Environments
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+.env
+.DS_Store
+Thumbs.db
