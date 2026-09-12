@@ -33,6 +33,7 @@ nopass_test_dec.txt
 # Application Logs
 *.log
 hybrid_crypto_errors.log
+cypher_lock_errors.log
 
 # Python Cache & Environments
 __pycache__/

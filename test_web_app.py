@@ -4,7 +4,7 @@ import unittest
 import tempfile
 import shutil
 from server import app, PRIV_KEY_PATH, PUB_KEY_PATH
-from hybrid_crypto import generate_rsa_keys, force_remove
+from cypher_lock import generate_rsa_keys, force_remove
 
 class TestWebApp(unittest.TestCase):
     @classmethod

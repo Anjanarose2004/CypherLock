@@ -1,10 +1,19 @@
 import os
 import unittest
-from hybrid_crypto import generate_rsa_keys, encrypt_file, decrypt_file, force_remove
+from cypher_lock import generate_rsa_keys, encrypt_file, decrypt_file, force_remove
 from cryptography.exceptions import InvalidTag, InvalidSignature
 from cryptography.hazmat.primitives.asymmetric import dsa
 from cryptography.hazmat.primitives import serialization
-from app import _validate_pem_public_key
+from server import _validate_pem_public_key_bytes
+
+def _validate_pem_public_key(filepath):
+    try:
+        with open(filepath, "rb") as f:
+            content = f.read()
+        key, _ = _validate_pem_public_key_bytes(content)
+        return key
+    except Exception:
+        return None
 
 class TestHybridEncryptionSecure(unittest.TestCase):
     
