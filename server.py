@@ -13,18 +13,18 @@ from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.primitives import hashes
 from cryptography.exceptions import InvalidTag, InvalidSignature
 
-from hybrid_crypto import (
+from cypher_lock import (
     generate_rsa_keys, encrypt_file, decrypt_file,
     _set_private_key_permissions, _zero_bytearray, force_remove
 )
 
 # App directory configuration matching desktop app
-APP_DIR = os.path.join(os.path.expanduser("~"), ".hybrid_crypto")
+APP_DIR = os.path.join(os.path.expanduser("~"), ".cypher_lock")
 os.makedirs(APP_DIR, exist_ok=True)
 
 PRIV_KEY_PATH = os.path.join(APP_DIR, "private.pem")
 PUB_KEY_PATH = os.path.join(APP_DIR, "public.pem")
-_log_file = os.path.join(APP_DIR, "hybrid_crypto_errors.log")
+_log_file = os.path.join(APP_DIR, "cypher_lock_errors.log")
 
 logging.basicConfig(
     filename=_log_file,
@@ -32,7 +32,7 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S"
 )
-logger = logging.getLogger("hybrid_crypto_web")
+logger = logging.getLogger("cypher_lock_web")
 
 if os.path.exists(_log_file):
     _set_private_key_permissions(_log_file)
@@ -463,7 +463,7 @@ def decrypt_endpoint():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     print(f"\n=======================================================")
-    print(f"  Hybrid Cryptography Studio (Web Edition)")
+    print(f"  Cypher-Lock Studio (Web Edition)")
     print(f"  Running locally at: http://127.0.0.1:{port}")
     print(f"=======================================================\n")
     app.run(host="127.0.0.1", port=port, debug=False)

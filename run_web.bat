@@ -1,5 +1,5 @@
 @echo off
-title Hybrid Cryptography Studio
-echo Starting Hybrid Cryptography Studio...
+title Cypher-Lock Studio
+echo Starting Cypher-Lock Studio...
 python run_web.py
 pause

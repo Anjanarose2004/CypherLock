@@ -29,9 +29,12 @@ By combining high-throughput **AES-256 Galois/Counter Mode (GCM)** for symmetric
 - **Content-Bound Digital Signatures**: Implements RSA-PSS (SHA-256) binding both metadata headers and a rolling SHA-256 stream digest of the ciphertext, defeating forwarding and repudiation attacks.
 - **C-Level Physical Memory Sanitization**: Bypasses Python interpreter memory abstractions using low-level `ctypes.memset` to overwrite session keys, plaintext buffers, and passphrases in physical RAM immediately after use.
 - **64GB Streaming Pipeline**: Chunked 64 KB stream-processing pipeline processes large files up to 64 GB without RAM exhaustion.
-- **OS-Level Key Sandboxing**: Asymmetric keys reside in a sandboxed user-profile vault (`~/.hybrid_crypto/`) protected by strict OS access controls (NTFS ACLs / POSIX permissions).
-- **Format v3 Early Verification**: Signature and integrity headers are verified *before* executing expensive decryption loops, mitigating Denial-of-Service (DoS) vectors.
-- **Responsive Web Studio**: A sleek, dark-themed local web dashboard with real-time key status, password complexity evaluator, and drag-and-drop workflows.
+- **OS-Level Key Sandboxing**: Asymmetric keys reside in a sandboxed user-profile vault (`~/.cypher_lock/`) protected by strict OS access controls (NTFS ACLs / POSIX permissions).
+- **Format v3 Content Binding**: Signatures bind header metadata and a streaming SHA-256 digest of ciphertext, preventing surreptitious forwarding and cross-protocol attacks.
+- **Constant-Time Verification**: HMAC-like constant-time operations for signature, tag validation, and padding verification prevent side-channel timing leaks.
+- **Process Memory Wiping**: Session keys and sensitive bytearrays are explicitly zeroed via C-level `ctypes.memset` memory overwrites upon task completion.
+- **Resilient File Handling**: Atomic tempfile staging with secure permissions (`0o600`) and collision handling prevent TOCTOU race conditions and partial file writes.
+- **Streaming Large Payloads**: Memory-efficient 64KB chunk processing prevents out-of-memory DoS on multi-gigabyte files (up to NIST SP 800-38D ~64 GiB limit).
 
 ---
 
@@ -126,7 +129,7 @@ CypherLock/
 ├── templates/
 │   └── index.html               # Enterprise Web Studio dashboard
 ├── .gitignore                   # Ignore rules for keys, payloads, and logs
-├── hybrid_crypto.py             # Core cryptographic engine (AES-256-GCM + RSA-3072)
+├── cypher_lock.py               # Core cryptographic engine (AES-256-GCM + RSA-3072)
 ├── LICENSE                      # Open-source MIT License
 ├── README.md                    # Project documentation
 ├── requirements.txt             # Lightweight dependencies (cryptography + flask)

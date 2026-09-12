@@ -24,7 +24,7 @@ CHUNK_SIZE = 65536
 # MED-04: NIST SP 800-38D recommends AES-GCM plaintext must not exceed 2^39 - 256 bits (~64 GiB)
 MAX_GCM_PLAINTEXT_BYTES = (2**39 - 256) // 8  # ~68,719,476,704 bytes (~64 GiB)
 
-logger = logging.getLogger("hybrid_crypto")
+logger = logging.getLogger("cypher_lock")
 
 
 def _zero_bytearray(ba):

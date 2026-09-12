@@ -14,7 +14,7 @@ def open_browser(port):
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     print("=" * 60)
-    print("  HYBRID CRYPTOGRAPHY STUDIO (Web Edition)")
+    print("  CYPHER-LOCK STUDIO (Web Edition)")
     print("  AES-256-GCM + RSA-3072 + Digital Signatures")
     print(f"  Starting local server on http://127.0.0.1:{port}")
     print("=" * 60)
